@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CustomersController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::group(['prefix'=>'customers'], static function(){
+   Route::get('list', [CustomersController::class,'list'])->name('get.customers.list');
+   Route::post('list-datatable',[CustomersController::class,'listForDatatable']);
 });
